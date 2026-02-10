@@ -18,6 +18,8 @@ body, html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    /* Pixelated cursor for retro feel */
+    cursor: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><rect width="16" height="16" fill="none"/><rect x="0" y="0" width="2" height="14" fill="%230f7d00"/><rect x="2" y="0" width="2" height="2" fill="%230f7d00"/><rect x="2" y="12" width="2" height="2" fill="%230f7d00"/><rect x="4" y="0" width="2" height="2" fill="%230f7d00"/><rect x="4" y="12" width="2" height="2" fill="%230f7d00"/><rect x="6" y="0" width="2" height="2" fill="%230f7d00"/><rect x="6" y="6" width="4" height="2" fill="%230f7d00"/><rect x="6" y="12" width="2" height="2" fill="%230f7d00"/><rect x="8" y="0" width="2" height="2" fill="%230f7d00"/><rect x="8" y="12" width="2" height="2" fill="%230f7d00"/><rect x="10" y="0" width="2" height="2" fill="%230f7d00"/><rect x="10" y="6" width="2" height="8" fill="%230f7d00"/><rect x="12" y="0" width="2" height="2" fill="%230f7d00"/></svg>') 0 0, default;
 }
 
 body {
@@ -86,21 +88,21 @@ body {
     border-radius: 25px;
 }
 
-/* Subtle screen flicker animation */
+/* Subtle screen flicker animation - choppy for retro feel */
 @keyframes crt-flicker {
     0%   { opacity: 1; }
-    2%   { opacity: 0.98; }
+    2%   { opacity: 0.96; }
     4%   { opacity: 1; }
-    8%   { opacity: 0.97; }
+    8%   { opacity: 0.94; }
     10%  { opacity: 1; }
     70%  { opacity: 1; }
-    72%  { opacity: 0.98; }
+    72%  { opacity: 0.97; }
     74%  { opacity: 1; }
     100% { opacity: 1; }
 }
 
 .crt-wrapper {
-    animation: crt-flicker 4s infinite;
+    animation: crt-flicker 3s steps(10, end) infinite; /* Steps make it choppy */
 }
 
 /* Moving scanline bar — sweeps up and down, subtle red tint */
@@ -250,7 +252,14 @@ body {
 a {
     color: #d6d6d6;
     text-decoration: none;
-    transition: text-decoration 0.25s;
+    transition: none; /* Remove smooth transitions */
+    cursor: pointer;
+}
+
+/* Choppy hover effect for links */
+a:hover {
+    color: #0f7d00;
+    text-decoration: none;
 }
 
 
@@ -271,7 +280,7 @@ a {
   width: 100%;
   height: 100%;
   background-color: #292929e0;
-  background-image: url('Files/enclave.webp'); /* Replace with your image path */
+  background-image: url('Files/enclave.webp');
   background-size: cover; /* or 'contain' depending on preference */
   background-position: center;
   background-repeat: no-repeat;
@@ -282,6 +291,10 @@ a {
   /* Safari text clarity */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Pixelated image rendering for gritty look */
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
 /* Improve text readability in mainRight */
@@ -350,14 +363,43 @@ a {
   margin: auto;
   font-size: 100%;
   color: #ffffff;
-  transition: background-color 0.1s, transform 0.1s;
+  transition: none; /* Remove smooth transitions for choppy feel */
   cursor: pointer;
+  position: relative;
+  padding-left: 10%;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
-/* Animacja podświetlania na hover */
+/* Pixelated red arrow on hover */
+.highlight-list li:hover::before {
+  content: "";
+  position: absolute;
+  left: 3%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect x="8" y="0" width="8" height="4" fill="%23ff0000"/><rect x="4" y="4" width="12" height="4" fill="%23ff0000"/><rect x="0" y="8" width="16" height="4" fill="%23ff0000"/><rect x="4" y="12" width="12" height="4" fill="%23ff0000"/><rect x="8" y="16" width="8" height="4" fill="%23ff0000"/></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  animation: arrow-blink 0.5s steps(2, end) infinite;
+}
+
+/* Blinking arrow animation for that retro feel */
+@keyframes arrow-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* Remove smooth hover background change */
 .highlight-list li:hover {
-  background-color: #acacac;
-  color: #1f1f1f;
+  background-color: transparent;
+  color: #ffffff;
 }
 
 /* Animacja na pierwszy element */
