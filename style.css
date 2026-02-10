@@ -18,8 +18,8 @@ body, html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    /* Pixelated cursor for retro feel */
-    cursor: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><rect width="16" height="16" fill="none"/><rect x="0" y="0" width="2" height="14" fill="%230f7d00"/><rect x="2" y="0" width="2" height="2" fill="%230f7d00"/><rect x="2" y="12" width="2" height="2" fill="%230f7d00"/><rect x="4" y="0" width="2" height="2" fill="%230f7d00"/><rect x="4" y="12" width="2" height="2" fill="%230f7d00"/><rect x="6" y="0" width="2" height="2" fill="%230f7d00"/><rect x="6" y="6" width="4" height="2" fill="%230f7d00"/><rect x="6" y="12" width="2" height="2" fill="%230f7d00"/><rect x="8" y="0" width="2" height="2" fill="%230f7d00"/><rect x="8" y="12" width="2" height="2" fill="%230f7d00"/><rect x="10" y="0" width="2" height="2" fill="%230f7d00"/><rect x="10" y="6" width="2" height="8" fill="%230f7d00"/><rect x="12" y="0" width="2" height="2" fill="%230f7d00"/></svg>') 0 0, default;
+    /* Normal cursor with green color */
+    cursor: default;
 }
 
 body {
@@ -254,12 +254,33 @@ a {
     text-decoration: none;
     transition: none; /* Remove smooth transitions */
     cursor: pointer;
+    filter: drop-shadow(0 0 2px #0f7d00);
 }
 
 /* Choppy hover effect for links */
 a:hover {
     color: #0f7d00;
     text-decoration: none;
+    filter: drop-shadow(0 0 4px #0f7d00);
+}
+
+/* Green glowing cursor for interactive elements */
+.highlight-list li,
+a,
+button,
+[onclick] {
+    cursor: pointer;
+}
+
+/* Custom green glowing cursor - using CSS to tint default cursor */
+*:hover {
+    cursor: inherit;
+}
+
+.highlight-list li:hover,
+a:hover,
+button:hover {
+    cursor: pointer;
 }
 
 
@@ -372,7 +393,14 @@ a:hover {
   image-rendering: crisp-edges;
 }
 
-/* Pixelated red arrow on hover */
+/* Add subtle glow to list items on hover */
+.highlight-list li:hover {
+  text-shadow: 
+    0 0 3px #0f7d00,
+    0 0 6px #0f7d00;
+}
+
+/* Pixelated green arrow on hover with glow */
 .highlight-list li:hover::before {
   content: "";
   position: absolute;
@@ -381,13 +409,14 @@ a:hover {
   transform: translateY(-50%);
   width: 16px;
   height: 16px;
-  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect x="8" y="0" width="8" height="4" fill="%23ff0000"/><rect x="4" y="4" width="12" height="4" fill="%23ff0000"/><rect x="0" y="8" width="16" height="4" fill="%23ff0000"/><rect x="4" y="12" width="12" height="4" fill="%23ff0000"/><rect x="8" y="16" width="8" height="4" fill="%23ff0000"/></svg>');
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect x="8" y="0" width="8" height="4" fill="%230f7d00"/><rect x="4" y="4" width="12" height="4" fill="%230f7d00"/><rect x="0" y="8" width="16" height="4" fill="%230f7d00"/><rect x="4" y="12" width="12" height="4" fill="%230f7d00"/><rect x="8" y="16" width="8" height="4" fill="%230f7d00"/></svg>');
   background-size: contain;
   background-repeat: no-repeat;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
   animation: arrow-blink 0.5s steps(2, end) infinite;
+  filter: drop-shadow(0 0 3px #0f7d00) drop-shadow(0 0 6px #0f7d00);
 }
 
 /* Blinking arrow animation for that retro feel */
