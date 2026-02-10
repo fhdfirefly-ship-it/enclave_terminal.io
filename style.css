@@ -14,14 +14,20 @@ body, html {
     padding: 0;
     height: 100%;
     width: 100%;
+    /* Webkit font smoothing for Safari */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 body {
     text-shadow:
-        0 0 5px #0f7d00,
-        0 0 10px #0f7d00,
-        0 0 20px #0f7d00,
-        0 0 40px #0f7d00;
+        0 0 3px #0f7d00,
+        0 0 6px #0f7d00;
+    /* Reduce blur on Safari */
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 /* ==================== CRT EFFECTS ==================== */
@@ -32,6 +38,11 @@ body {
     min-height: 100vh;
     overflow: hidden;
     border-radius: 18px;
+    /* Safari blur fixes */
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
 /* Scanline overlay — thin repeating horizontal lines */
@@ -268,6 +279,16 @@ a {
   padding: 0 20px 20px 20px;
   box-sizing: border-box;
   position: relative;
+  /* Safari text clarity */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Improve text readability in mainRight */
+.mainRight h1, .mainRight h2, .mainRight p {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Optional: Add an overlay to control image transparency */
