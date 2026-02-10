@@ -274,7 +274,7 @@ button,
 
 /* Custom green glowing cursor - using CSS to tint default cursor */
 *:hover {
-    cursor: inherit;
+    cursor: pointer;
 }
 
 .highlight-list li:hover,
